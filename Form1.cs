@@ -16,6 +16,7 @@ namespace myNote
         RichTextBox rtbFlashMemo = new RichTextBox();//실시간 정보 이동용
         RichTextBox rtbAll = new RichTextBox();//전체 카테고리
         string[] rtbMemory;
+        bool MemoNameCheck = true;
 
         public Form1()
         {
@@ -90,11 +91,20 @@ namespace myNote
 
         private void btnNewMemoAdd_Click(object sender, EventArgs e)
         {
-            
-
             try
             {
-                if (txtMemoName.Text != "")
+                int Count = toolStrip.Items.Count;
+                MemoNameCheck = true;
+
+                for (int i = 1; i < Count - 1; i++)
+                {
+                    if (txtMemoName.Text == toolStrip.Items[i].Text)
+                    {
+                        MemoNameCheck = false;
+                    }
+                }
+
+                if (txtMemoName.Text != "" && MemoNameCheck == true)
                 {
                     ToolStripItem ti = toolStrip.Items.Add(txtMemoName.Text);
 
@@ -108,16 +118,17 @@ namespace myNote
                     else if (index > 9)
                     {
                         string[] rtbFlashMemory = new string[index + 10];
-                        //for (int i = 0; i < index + 10; i++)
-                        //{
-                        //    rtbFlashMemory = rtbMemory;
-                        //}
                         rtbFlashMemory = rtbMemory;
                         rtbMemory = new string[index + 10];
                         rtbMemory = rtbFlashMemory;
                     }
                     index++;
                     plAdd_Close();
+                }
+                else if(MemoNameCheck == false)
+                {
+                    MessageBox.Show("입력하신 메모장 이름이 이미 존재합니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtMemoName.Focus();
                 }
                 else
                 {
@@ -140,6 +151,26 @@ namespace myNote
         {
             rtbMemo.Clear();
             rtbMemo.Text = rtbAll.Text;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int Count = toolStrip.Items.Count;
+
+            domainUpDown.SelectedIndex = 0;
+            for (int i = 1; i < Count - 1; i++)
+            {
+                if (txtMemoName.Text == toolStrip.Items[i].Text && txtMemoName.Text != "전체")
+                {
+                    toolStrip.Items.Remove(toolStrip.Items[i]);
+                    domainUpDown.Items.Remove(txtMemoName.Text);
+                }
+            }
+
+            if(toolStrip.Items.Count == Count)
+            {
+                MessageBox.Show("메모장 이름을 잘못 입력하셨거나 '전체' 메모장은 삭제할 수 없습니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

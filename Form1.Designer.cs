@@ -43,6 +43,7 @@ namespace myNote
             this.btnNewMemoCancel = new System.Windows.Forms.Button();
             this.btnNewMemoAdd = new System.Windows.Forms.Button();
             this.txtMemoName = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.toolStrip.SuspendLayout();
             this.plAdd.SuspendLayout();
             this.SuspendLayout();
@@ -93,8 +94,8 @@ namespace myNote
             this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
             this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAdd.Name = "tsbAdd";
-            this.tsbAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbAdd.Text = "+";
+            this.tsbAdd.Size = new System.Drawing.Size(24, 22);
+            this.tsbAdd.Text = "+-";
             this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // txtMessage
@@ -126,6 +127,7 @@ namespace myNote
             // 
             // plAdd
             // 
+            this.plAdd.Controls.Add(this.btnDelete);
             this.plAdd.Controls.Add(this.label1);
             this.plAdd.Controls.Add(this.btnNewMemoCancel);
             this.plAdd.Controls.Add(this.btnNewMemoAdd);
@@ -133,7 +135,7 @@ namespace myNote
             this.plAdd.Enabled = false;
             this.plAdd.Location = new System.Drawing.Point(41, 132);
             this.plAdd.Name = "plAdd";
-            this.plAdd.Size = new System.Drawing.Size(271, 120);
+            this.plAdd.Size = new System.Drawing.Size(271, 116);
             this.plAdd.TabIndex = 6;
             this.plAdd.Visible = false;
             // 
@@ -148,11 +150,11 @@ namespace myNote
             // 
             // btnNewMemoCancel
             // 
-            this.btnNewMemoCancel.Location = new System.Drawing.Point(155, 67);
+            this.btnNewMemoCancel.Location = new System.Drawing.Point(180, 67);
             this.btnNewMemoCancel.Name = "btnNewMemoCancel";
-            this.btnNewMemoCancel.Size = new System.Drawing.Size(91, 26);
+            this.btnNewMemoCancel.Size = new System.Drawing.Size(65, 26);
             this.btnNewMemoCancel.TabIndex = 6;
-            this.btnNewMemoCancel.Text = "취소";
+            this.btnNewMemoCancel.Text = "취 소";
             this.btnNewMemoCancel.UseVisualStyleBackColor = true;
             this.btnNewMemoCancel.Click += new System.EventHandler(this.btnNewMemoCancel_Click);
             // 
@@ -160,9 +162,9 @@ namespace myNote
             // 
             this.btnNewMemoAdd.Location = new System.Drawing.Point(30, 67);
             this.btnNewMemoAdd.Name = "btnNewMemoAdd";
-            this.btnNewMemoAdd.Size = new System.Drawing.Size(91, 26);
+            this.btnNewMemoAdd.Size = new System.Drawing.Size(65, 26);
             this.btnNewMemoAdd.TabIndex = 5;
-            this.btnNewMemoAdd.Text = "추가";
+            this.btnNewMemoAdd.Text = "추 가";
             this.btnNewMemoAdd.UseVisualStyleBackColor = true;
             this.btnNewMemoAdd.Click += new System.EventHandler(this.btnNewMemoAdd_Click);
             // 
@@ -172,6 +174,16 @@ namespace myNote
             this.txtMemoName.Name = "txtMemoName";
             this.txtMemoName.Size = new System.Drawing.Size(135, 21);
             this.txtMemoName.TabIndex = 2;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(105, 67);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(65, 26);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "삭 제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // Form1
             // 
@@ -211,6 +223,7 @@ namespace myNote
         private System.Windows.Forms.Button btnNewMemoCancel;
         private System.Windows.Forms.Button btnNewMemoAdd;
         private System.Windows.Forms.TextBox txtMemoName;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

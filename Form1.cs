@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace myNote
 {
@@ -104,6 +105,8 @@ namespace myNote
                     }
                 }
 
+
+
                 if (txtMemoName.Text != "" && MemoNameCheck == true)
                 {
                     ToolStripItem ti = toolStrip.Items.Add(txtMemoName.Text);
@@ -164,12 +167,45 @@ namespace myNote
                 {
                     toolStrip.Items.Remove(toolStrip.Items[i]);
                     domainUpDown.Items.Remove(txtMemoName.Text);
+                    for (int j = 0; j < rtbMemory.Length - 1; j++)
+                    {
+                        rtbMemory[(i - 1) + j] = rtbMemory[i + j];
+                    }
+                    index--;
                 }
             }
 
-            if(toolStrip.Items.Count == Count)
+            if(txtMemoName.Text == tsbAll.Text || txtMemoName.Text == tsbAdd.Text)
             {
-                MessageBox.Show("메모장 이름을 잘못 입력하셨거나 '전체' 메모장은 삭제할 수 없습니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("메모장 이름을 잘못 입력하셨거나 '전체', '+-' 메모장은 삭제할 수 없습니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnExpand_Click(object sender, EventArgs e)
+        {
+            if (pnlExpend.Visible == false)
+            {
+                pnlExpend.Visible = true;
+                btnExpand.BackgroundImage = Properties.Resources.min;
+            }
+            else
+            {
+                pnlExpend.Visible = false;
+                btnExpand.BackgroundImage = Properties.Resources.plus;
+            }
+        }
+
+        private void btnSaveText_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile1 = new SaveFileDialog();
+
+            saveFile1.DefaultExt = "*.txt";
+            saveFile1.Filter = "text Files|*.txt";
+
+            if (saveFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFile1.FileName.Length > 0)
+            {
+                rtbMemo.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
+                MessageBox.Show("메모장이 저장됐습니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

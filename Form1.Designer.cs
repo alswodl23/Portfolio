@@ -33,19 +33,23 @@ namespace myNote
             this.rtbMemo = new System.Windows.Forms.RichTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.tsbAll = new System.Windows.Forms.ToolStripButton();
-            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnInput = new System.Windows.Forms.Button();
             this.domainUpDown = new System.Windows.Forms.DomainUpDown();
             this.plAdd = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNewMemoCancel = new System.Windows.Forms.Button();
             this.btnNewMemoAdd = new System.Windows.Forms.Button();
             this.txtMemoName = new System.Windows.Forms.TextBox();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.pnlExpend = new System.Windows.Forms.Panel();
+            this.btnSaveText = new System.Windows.Forms.Button();
+            this.btnExpand = new System.Windows.Forms.Button();
+            this.tsbAll = new System.Windows.Forms.ToolStripButton();
+            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.plAdd.SuspendLayout();
+            this.pnlExpend.SuspendLayout();
             this.SuspendLayout();
             // 
             // rtbMemo
@@ -78,39 +82,19 @@ namespace myNote
             this.toolStrip.TabIndex = 5;
             this.toolStrip.Text = "toolStrip1";
             // 
-            // tsbAll
-            // 
-            this.tsbAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbAll.Image")));
-            this.tsbAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAll.Name = "tsbAll";
-            this.tsbAll.Size = new System.Drawing.Size(35, 22);
-            this.tsbAll.Text = "전체";
-            this.tsbAll.Click += new System.EventHandler(this.tsbAll_Click);
-            // 
-            // tsbAdd
-            // 
-            this.tsbAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
-            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAdd.Name = "tsbAdd";
-            this.tsbAdd.Size = new System.Drawing.Size(24, 22);
-            this.tsbAdd.Text = "+-";
-            this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
-            // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(12, 372);
+            this.txtMessage.Location = new System.Drawing.Point(72, 377);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(236, 55);
+            this.txtMessage.Size = new System.Drawing.Size(188, 50);
             this.txtMessage.TabIndex = 2;
             // 
             // btnInput
             // 
-            this.btnInput.Location = new System.Drawing.Point(254, 371);
+            this.btnInput.Location = new System.Drawing.Point(266, 377);
             this.btnInput.Name = "btnInput";
-            this.btnInput.Size = new System.Drawing.Size(95, 23);
+            this.btnInput.Size = new System.Drawing.Size(83, 23);
             this.btnInput.TabIndex = 3;
             this.btnInput.Text = "입력";
             this.btnInput.UseVisualStyleBackColor = true;
@@ -119,10 +103,10 @@ namespace myNote
             // domainUpDown
             // 
             this.domainUpDown.Items.Add("전체");
-            this.domainUpDown.Location = new System.Drawing.Point(254, 405);
+            this.domainUpDown.Location = new System.Drawing.Point(266, 406);
             this.domainUpDown.Name = "domainUpDown";
             this.domainUpDown.ReadOnly = true;
-            this.domainUpDown.Size = new System.Drawing.Size(95, 21);
+            this.domainUpDown.Size = new System.Drawing.Size(83, 21);
             this.domainUpDown.TabIndex = 5;
             // 
             // plAdd
@@ -138,6 +122,16 @@ namespace myNote
             this.plAdd.Size = new System.Drawing.Size(271, 116);
             this.plAdd.TabIndex = 6;
             this.plAdd.Visible = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(105, 67);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(65, 26);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "삭 제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label1
             // 
@@ -175,21 +169,63 @@ namespace myNote
             this.txtMemoName.Size = new System.Drawing.Size(135, 21);
             this.txtMemoName.TabIndex = 2;
             // 
-            // btnDelete
+            // pnlExpend
             // 
-            this.btnDelete.Location = new System.Drawing.Point(105, 67);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(65, 26);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "삭 제";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.pnlExpend.Controls.Add(this.btnSaveText);
+            this.pnlExpend.Location = new System.Drawing.Point(0, 255);
+            this.pnlExpend.Name = "pnlExpend";
+            this.pnlExpend.Size = new System.Drawing.Size(356, 100);
+            this.pnlExpend.TabIndex = 8;
+            this.pnlExpend.Visible = false;
+            // 
+            // btnSaveText
+            // 
+            this.btnSaveText.Location = new System.Drawing.Point(12, 16);
+            this.btnSaveText.Name = "btnSaveText";
+            this.btnSaveText.Size = new System.Drawing.Size(124, 23);
+            this.btnSaveText.TabIndex = 9;
+            this.btnSaveText.Text = "txt파일로 내보내기";
+            this.btnSaveText.UseVisualStyleBackColor = true;
+            this.btnSaveText.Click += new System.EventHandler(this.btnSaveText_Click);
+            // 
+            // btnExpand
+            // 
+            this.btnExpand.BackgroundImage = global::myNote.Properties.Resources.plus;
+            this.btnExpand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExpand.Location = new System.Drawing.Point(12, 382);
+            this.btnExpand.Name = "btnExpand";
+            this.btnExpand.Size = new System.Drawing.Size(54, 45);
+            this.btnExpand.TabIndex = 7;
+            this.btnExpand.UseVisualStyleBackColor = true;
+            this.btnExpand.Click += new System.EventHandler(this.btnExpand_Click);
+            // 
+            // tsbAll
+            // 
+            this.tsbAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbAll.Image")));
+            this.tsbAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAll.Name = "tsbAll";
+            this.tsbAll.Size = new System.Drawing.Size(35, 22);
+            this.tsbAll.Text = "전체";
+            this.tsbAll.Click += new System.EventHandler(this.tsbAll_Click);
+            // 
+            // tsbAdd
+            // 
+            this.tsbAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
+            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdd.Name = "tsbAdd";
+            this.tsbAdd.Size = new System.Drawing.Size(24, 22);
+            this.tsbAdd.Text = "+-";
+            this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 439);
+            this.Controls.Add(this.pnlExpend);
+            this.Controls.Add(this.btnExpand);
             this.Controls.Add(this.plAdd);
             this.Controls.Add(this.domainUpDown);
             this.Controls.Add(this.btnInput);
@@ -203,6 +239,7 @@ namespace myNote
             this.toolStrip.PerformLayout();
             this.plAdd.ResumeLayout(false);
             this.plAdd.PerformLayout();
+            this.pnlExpend.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,6 +261,9 @@ namespace myNote
         private System.Windows.Forms.Button btnNewMemoAdd;
         private System.Windows.Forms.TextBox txtMemoName;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnExpand;
+        private System.Windows.Forms.Panel pnlExpend;
+        private System.Windows.Forms.Button btnSaveText;
     }
 }
 
